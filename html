@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Insert title here</title>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+	var xhr = new XMLHttpRequest();
+	xhr.open("GET", "https://newsapi.org/v2/everything?q=bitcoin&apiKey=8706bed3e9504d41b528ee66599dc9da", true);
+
+	var response = {};
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState == 4 && xhr.status == 200) {
+			var obj = JSON.parse(xhr.responseText);
+			const articlesArray = obj.articles;
+			const lengthOfArticles = articlesArray.length;
+
+			console.log(lengthOfArticles);
+			var i=0
+			for (let i = 0; i < 6; i++) {
+				const article = articlesArray[i];
+				const cardTitleElement = document.getElementById("h5-" + (i + 1));
+				const cardParaElement = document.getElementById("para-" + (i + 1));
+				const cardImageElement = document.getElementById("img-"+(i+1));
+		        cardImageElement.src = article.urlToImage;
+				cardTitleElement.innerHTML = article.title;
+				
+				const words = article.description.split(' ');
+				const limitedDescription = words.slice(0, 20).join(' ');
+				cardParaElement.innerHTML = limitedDescription + '...';
+			}
+		}
+	};
+
+	xhr.send();
+</script>
+
+
+<style>
+  .card-img-top {
+    max-width: 100%;
+    height: auto;
+  }
+</style>
+
+
+</head>
+<body>
+<div class="container">
+<div class="row">
+<div class="col-sm-4">	
+<div class="card" style="width: 18rem;">
+  <img src="" class="card-img-top" alt="..." id="img-1" name="img-1">
+  <div class="card-body">
+    <h5 class="card-title" id="h5-1" name="h5-1">Card title</h5>
+    <p class="card-text" id="para-1" name="para-1" >Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <button class="btn btn-success"><a href="#">Walk through</a></button>
+  </div>
+</div>
+</div>
+
+<div class="col-sm-4">	
+<div class="card" style="width: 18rem;">
+  <img src="" class="card-img-top" alt="..." id="img-2" name="img-2">
+  <div class="card-body">
+    <h5 class="card-title" id="h5-2" name="h5-2">Card title</h5>
+    <p class="card-text" id="para-2" name="para-2" >Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <button class="btn btn-success"><a href="#">Walk through</a></button>
+  </div>
+</div>
+</div>
+
+
+<div class="col-sm-4">	
+<div class="card" style="width: 18rem;">
+  <img src="" class="card-img-top" alt="..." id="img-3" name="img-3">
+  <div class="card-body">
+    <h5 class="card-title" id="h5-3" name="h5-3">Card title</h5>
+    <p class="card-text" id="para-3" name="para-3" >Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <button class="btn btn-success"><a href="#">Walk through</a></button>
+  </div>
+</div>
+</div>
+
+</div>
+
+
+
+
+<div class="row">
+<div class="col-sm-4">	
+<div class="card" style="width: 18rem;">
+  <img src="" class="card-img-top" alt="..." id="img-4" name="img-4">
+  <div class="card-body">
+    <h5 class="card-title" id="h5-4" name="h5-4">Card title</h5>
+    <p class="card-text" id="para-4" name="para-4" >Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <button class="btn btn-success"><a href="#">Walk through</a></button>
+  </div>
+</div>
+</div>
+
+<div class="col-sm-4">	
+<div class="card" style="width: 18rem;">
+  <img src="" class="card-img-top" alt="..." id="img-5" name="img-5">
+  <div class="card-body">
+    <h5 class="card-title" id="h5-5" name="h5-5">Card title</h5>
+    <p class="card-text" id="para-5" name="para-5" >Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <button class="btn btn-success"><a href="#">Walk through</a></button>
+  </div>
+</div>
+</div>
+
+
+<div class="col-sm-4">	
+<div class="card" style="width: 18rem;">
+  <img src="" class="card-img-top" alt="..." id="img-6" name="img-6">
+  <div class="card-body">
+    <h5 class="card-title" id="h5-6" name="h5-6">Card title</h5>
+    <p class="card-text" id="para-6" name="para-6" >Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <button class="btn btn-success"><a href="#">Walk through</a></button>
+  </div>
+</div>
+</div>
+
+</div>
+
+
+
+
+
+
+
+</div>
+</body>
+
+</html>
