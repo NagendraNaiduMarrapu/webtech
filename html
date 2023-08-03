@@ -24,16 +24,16 @@
 				const cardTitleElement = document.getElementById("h5-" + (i + 1));
 				const cardParaElement = document.getElementById("para-" + (i + 1));
 				const cardImageElement = document.getElementById("img-"+(i+1));
+				const cardUrlElement = document.getElementById("anc-"+(i+1))
 		        cardImageElement.src = article.urlToImage;
 				cardTitleElement.innerHTML = article.title;
-				
 				const words = article.description.split(' ');
 				const limitedDescription = words.slice(0, 20).join(' ');
 				cardParaElement.innerHTML = limitedDescription + '...';
+				cardUrlElement.href = article.url;
 			}
 		}
 	};
-
 	xhr.send();
 </script>
 
@@ -56,7 +56,7 @@
   <div class="card-body">
     <h5 class="card-title" id="h5-1" name="h5-1">Card title</h5>
     <p class="card-text" id="para-1" name="para-1" >Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <button class="btn btn-success"><a href="#">Walk through</a></button>
+    <button class="btn btn-success"><a href="#" id="anc-1">Walk through</a></button>
   </div>
 </div>
 </div>
@@ -67,7 +67,7 @@
   <div class="card-body">
     <h5 class="card-title" id="h5-2" name="h5-2">Card title</h5>
     <p class="card-text" id="para-2" name="para-2" >Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <button class="btn btn-success"><a href="#">Walk through</a></button>
+    <button class="btn btn-success"><a href="#" id="inc-2">Walk through</a></button>
   </div>
 </div>
 </div>
@@ -79,7 +79,7 @@
   <div class="card-body">
     <h5 class="card-title" id="h5-3" name="h5-3">Card title</h5>
     <p class="card-text" id="para-3" name="para-3" >Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <button class="btn btn-success"><a href="#">Walk through</a></button>
+    <button class="btn btn-success"><a href="#" id="inc-3">Walk through</a></button>
   </div>
 </div>
 </div>
@@ -96,7 +96,7 @@
   <div class="card-body">
     <h5 class="card-title" id="h5-4" name="h5-4">Card title</h5>
     <p class="card-text" id="para-4" name="para-4" >Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <button class="btn btn-success"><a href="#">Walk through</a></button>
+    <button class="btn btn-success"><a href="#" id="inc-4">Walk through</a></button>
   </div>
 </div>
 </div>
@@ -107,7 +107,7 @@
   <div class="card-body">
     <h5 class="card-title" id="h5-5" name="h5-5">Card title</h5>
     <p class="card-text" id="para-5" name="para-5" >Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <button class="btn btn-success"><a href="#">Walk through</a></button>
+    <button class="btn btn-success"><a href="#" id="inc-5">Walk through</a></button>
   </div>
 </div>
 </div>
@@ -119,7 +119,7 @@
   <div class="card-body">
     <h5 class="card-title" id="h5-6" name="h5-6">Card title</h5>
     <p class="card-text" id="para-6" name="para-6" >Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <button class="btn btn-success"><a href="#">Walk through</a></button>
+    <button class="btn btn-success"><a href="#" id="inc-6">Walk through</a></button>
   </div>
 </div>
 </div>
