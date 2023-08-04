@@ -12,30 +12,56 @@
 
 	var response = {};
 	xhr.onreadystatechange = function() {
-		if (xhr.readyState == 4 && xhr.status == 200) {
-			var obj = JSON.parse(xhr.responseText);
-			const articlesArray = obj.articles;
-			const lengthOfArticles = articlesArray.length;
+	    if (xhr.readyState == 4 && xhr.status == 200) {
+	      var obj = JSON.parse(xhr.responseText);
+	      const articlesArray = obj.articles;
+	      const totalArticles = articlesArray.length;
+	      const articlesPerPage = 6;
+	      const totalPages = Math.ceil(totalArticles / articlesPerPage);
 
-			console.log(lengthOfArticles);
-			var i=0
-			for (let i = 0; i < 6; i++) {
-				const article = articlesArray[i];
-				const cardTitleElement = document.getElementById("h5-" + (i + 1));
-				const cardParaElement = document.getElementById("para-" + (i + 1));
-				const cardImageElement = document.getElementById("img-"+(i+1));
-				const cardUrlElement = document.getElementById("anc-"+(i+1))
-		        cardImageElement.src = article.urlToImage;
-				cardTitleElement.innerHTML = article.title;
-				const words = article.description.split(' ');
-				const limitedDescription = words.slice(0, 20).join(' ');
-				cardParaElement.innerHTML = limitedDescription + '...';
-				cardUrlElement.href = article.url;
-			}
-		}
-	};
-	xhr.send();
-</script>
+	      function displayArticles(page) {
+	        const startIndex = (page - 1) * articlesPerPage;
+	        const endIndex = startIndex + articlesPerPage;
+	        for (let i = startIndex; i < endIndex && i < totalArticles; i++) {
+	          const article = articlesArray[i];
+	          const cardTitleElement = document.getElementById("h5-" + (i - startIndex + 1));
+	          const cardParaElement = document.getElementById("para-" + (i - startIndex + 1));
+	          const cardImageElement = document.getElementById("img-" + (i - startIndex + 1));
+	          const cardUrlElement = document.getElementById("inc-" + (i - startIndex + 1));
+			  if(article.urlToImage!=null){
+	          cardImageElement.src = article.urlToImage;
+			  }
+			  else{
+				  cardImageElement.src ="https://encrypted-tbn2.gstatic.com/licensed-image?q=tbn:ANd9GcQ9V9HCp5iiSLSve8c-OsHCt_xBkp0Q4j-RrM-m1IIS9IOMb6nzs8gipQGg_TCe4mOsxTGXJ8l5vY02K4A";
+			  }
+	          const word = article.title.split(' ');
+	          const limited = word.slice(0, 10).join(' ');
+	          cardTitleElement.innerHTML = limited + '...';
+	          const words = article.description.split(' ');
+	          const limitedDescription = words.slice(0, 20).join(' ');
+	          cardParaElement.innerHTML = limitedDescription + '...';
+	          cardUrlElement.href = article.url;
+	        }
+	      }
+
+	  
+	      displayArticles(1);
+
+
+	      const paginationElement = document.querySelector(".pagination");
+	      for (let i = 1; i <= totalPages; i++) {
+	        const pageLink = document.createElement("a");
+	        pageLink.href = "#";
+	        pageLink.textContent = i;
+	        pageLink.addEventListener("click", function() {
+	          displayArticles(i);
+	        });
+	        paginationElement.appendChild(pageLink);
+	      }
+	    }
+	  };
+	  xhr.send();
+	</script>
 
 
 <style>
@@ -43,11 +69,32 @@
     max-width: 100%;
     height: auto;
   }
+  
+  .pagination {
+  display: inline-block;
+}
+
+
+.pagination a {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
 </style>
 
 
 </head>
 <body>
+<nav class="navbar navbar-light bg-light justify-content-between">
+  <a class="navbar-brand">BITCOIN NEWS</a>
+  <form class="form-inline">
+    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+  </form>
+</nav>
+
 <div class="container">
 <div class="row">
 <div class="col-sm-4">	
@@ -56,7 +103,7 @@
   <div class="card-body">
     <h5 class="card-title" id="h5-1" name="h5-1">Card title</h5>
     <p class="card-text" id="para-1" name="para-1" >Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <button class="btn btn-success"><a href="#" id="anc-1">Walk through</a></button>
+    <button class="btn btn-success"><a href="#" id="inc-1">Walk through</a></button>
   </div>
 </div>
 </div>
@@ -127,7 +174,9 @@
 </div>
 
 
+<div class="pagination">
 
+</div>
 
 
 
